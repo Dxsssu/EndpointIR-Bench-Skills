@@ -1,0 +1,21 @@
+name: Check skills
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  contracts:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python: ['3.10', '3.12']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Test material-based builder
+        run: python -B skills/endpointir-benchmark-builder/scripts/test_benchmark_tools.py
+      - name: Test synthetic builder
+        run: python -B skills/endpointir-synthetic-builder/scripts/test_benchmark_tools.py

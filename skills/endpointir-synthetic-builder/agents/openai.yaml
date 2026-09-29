@@ -1,0 +1,3 @@
+interface:
+  display_name: "EndpointIR 自主合成场景"
+  short_description: "基于内置 ATT&CK 知识自主设计多步 Linux 溯源场景、脚本与隐藏 QA"
